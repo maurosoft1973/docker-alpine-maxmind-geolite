@@ -9,6 +9,7 @@
 The Docker images [(maurosoft1973/alpine-maxmind-geolite)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/) is based on the minimal [Alpine Linux](https://alpinelinux.org/).
 
 ##### Alpine Version 3.13.3 (Released Mar 25, 2021)
+##### MaxMind GeoLite 2 Version 20210330
 
 ## Description
 This image contains small rest application, write in go, for ip address geo location in json format.
@@ -37,4 +38,4 @@ http://{CONTAINER_IP_ADDRESS}:3001/{IP} (Format XXX.XXX.XXX.XXX)
 * `TIMEZONE`: default timezone (Europe/Brussels)
 
 ***
-###### Last Update 02.04.2021 09:24:02
+###### Last Update 02.04.2021 10:57:26
