@@ -45,7 +45,8 @@ new version:
         - tar zxvf ./geoipupdate_${MAXMIND_GEOIPUPDATE_VERSION}_linux_amd64.tar.gz
         - chmod +x ./geoipupdate_${MAXMIND_GEOIPUPDATE_VERSION}_linux_amd64/geoipupdate
         - ./geoipupdate_${MAXMIND_GEOIPUPDATE_VERSION}_linux_amd64/geoipupdate -f /etc/GeoIP.conf -d /tmp
-        - TIMESTAMP=$(date -r /tmp/GeoLite2-City.mmdb +"%Y%m%d")
+        - IMAGE_TAG=$(date -r /tmp/GeoLite2-City.mmdb +"%Y%m%d")
+        - echo -e "Image Tag $IMAGE_TAG"
         - apk add --no-cache bash git openssh-client ca-certificates
         - git config --global user.email "mauro.cardillo@gmail.com"
         - git config --global user.name "Mauro Cardillo"
@@ -61,7 +62,6 @@ new version:
         - git clone git@gitlab.com:maurosoft1973-docker/$DOCKERHUB_REPO_NAME.git /tmp/$DOCKERHUB_REPO_NAME
         - cd /tmp/$DOCKERHUB_REPO_NAME
         - cp -p /tmp/GeoLite2-City.mmdb /tmp/$DOCKERHUB_REPO_NAME/db.mmdb
-        - git status
         - GIT_STATUS=$(git status --porcelain | wc -l)
         - COMMAND=$([[ $GIT_STATUS -gt 1 ]] && git add . || echo "no files modified")
         - echo $COMMAND
@@ -71,7 +71,7 @@ new version:
         - echo $COMMAND
         - JOB=$([[ $GIT_STATUS -gt 1 ]] && echo 1 || echo 0)
         - echo $JOB
-        - curl -X POST -F token=$TOKEN -F "variables[TRIGGER_JOB]=job$JOB" -F ref=master https://gitlab.com/api/v4/projects/21982737/trigger/pipeline
+        - curl -X POST -F token=$TOKEN -F "variables[TRIGGER_JOB]=job$JOB" -F "variables[TRIGGER_IMAGE_TAG]=$IMAGE_TAG" -F ref=master https://gitlab.com/api/v4/projects/21982737/trigger/pipeline
 
 update readme:
     stage: Documentation
@@ -103,7 +103,8 @@ update readme:
         - echo "Generate README"
         - sed "s/\%ALPINE_VERSION\%/${ALPINE_VERSION}/g" README.tpl > README_COMPILE.md1
         - sed "s/\%ALPINE_VERSION_DATE\%/${ALPINE_VERSION_DATE}/g" README_COMPILE.md1 > README_COMPILE.md2
-        - sed "s/\%LAST_UPDATE\%/${LAST_UPDATE}/g" README_COMPILE.md2 > README.md
+        - sed "s/\%MAXMIND_GEOLITE_VERSION\%/${TRIGGER_IMAGE_TAG}/g" README_COMPILE.md2 > README_COMPILE.md3
+        - sed "s/\%LAST_UPDATE\%/${LAST_UPDATE}/g" README_COMPILE.md3 > README.md
         - rm -rf README_COMPILE.*
         - git add .
         - git commit -m "Update README"
@@ -120,7 +121,7 @@ amd64 test build:
     variables:
         RELEASE: "TEST"
     script:
-        - bash ./build-image.sh -av=$JOB_ALPINE_VERSION -avd=$JOB_ALPINE_VERSION_DATE -ar=$JOB_ALPINE_RELEASE -r=$RELEASE
+        - bash ./build-image.sh -it=$TRIGGER_IMAGE_TAG -av=$JOB_ALPINE_VERSION -avd=$JOB_ALPINE_VERSION_DATE -ar=$JOB_ALPINE_RELEASE -r=$RELEASE
 
 amd64 current build:
     stage: Build e Push image
@@ -129,7 +130,7 @@ amd64 current build:
     rules:
       - if: '$TRIGGER_JOB == "job1"'
     script:
-        - bash ./build-image.sh -av=$JOB_ALPINE_VERSION -avd=$JOB_ALPINE_VERSION_DATE -ar=$JOB_ALPINE_RELEASE -r=$RELEASE
+        - bash ./build-image.sh -it=$TRIGGER_IMAGE_TAG -av=$JOB_ALPINE_VERSION -avd=$JOB_ALPINE_VERSION_DATE -ar=$JOB_ALPINE_RELEASE -r=$RELEASE
 
 amd64 latest build:
     stage: Build e Push image
@@ -138,5 +139,5 @@ amd64 latest build:
     rules:
       - if: '$TRIGGER_JOB == "job1"'
     script:
-        - bash ./build-image.sh -av=$JOB_ALPINE_VERSION -avd=$JOB_ALPINE_VERSION_DATE -ar=$JOB_ALPINE_RELEASE -r=$RELEASE
+        - bash ./build-image.sh -it=$TRIGGER_IMAGE_TAG -av=$JOB_ALPINE_VERSION -avd=$JOB_ALPINE_VERSION_DATE -ar=$JOB_ALPINE_RELEASE -r=$RELEASE
 

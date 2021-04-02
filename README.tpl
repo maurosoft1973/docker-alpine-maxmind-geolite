@@ -9,6 +9,7 @@
 The Docker images [(maurosoft1973/alpine-maxmind-geolite)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/) is based on the minimal [Alpine Linux](https://alpinelinux.org/).
 
 ##### Alpine Version %ALPINE_VERSION% (Released %ALPINE_VERSION_DATE%)
+##### MaxMind GeoLite 2 Version %MAXMIND_GEOLITE_VERSION%
 
 ## Description
 This image contains small rest application, write in go, for ip address geo location in json format.
