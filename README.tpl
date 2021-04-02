@@ -11,7 +11,9 @@ The Docker images [(maurosoft1973/alpine-maxmind-geolite)](https://hub.docker.co
 ##### Alpine Version %ALPINE_VERSION% (Released %ALPINE_VERSION_DATE%)
 
 ## Description
-This image contains small rest application, write in go, for ip address geo location.
+This image contains small rest application, write in go, for ip address geo location in json format
+
+For call the service, 
 
 ## Architectures
 
