@@ -37,4 +37,4 @@ http://{CONTAINER_IP_ADDRESS}:3001/{IP} (Format XXX.XXX.XXX.XXX)
 * `TIMEZONE`: default timezone (Europe/Brussels)
 
 ***
-###### Last Update %LAST_UPDATE%
+###### Last Update 02.04.2021 09:24:02
