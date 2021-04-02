@@ -102,7 +102,8 @@ update readme:
         - LAST_UPDATE=$(date +"%d.%m.%Y %H:%M:%S")
         - echo "Generate README"
         - sed "s/\%ALPINE_VERSION\%/${ALPINE_VERSION}/g" README.tpl > README_COMPILE.md1
-        - sed "s/\%ALPINE_VERSION_DATE\%/${ALPINE_VERSION_DATE}/g" README_COMPILE.md1 > README.md
+        - sed "s/\%ALPINE_VERSION_DATE\%/${ALPINE_VERSION_DATE}/g" README_COMPILE.md1 > README_COMPILE.md2
+        - sed "s/\%LAST_UPDATE\%/${LAST_UPDATE}/g" README_COMPILE.md2 > README.md
         - rm -rf README_COMPILE.*
         - git add .
         - git commit -m "Update README"
