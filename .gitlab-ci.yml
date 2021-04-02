@@ -25,9 +25,11 @@ new version:
     image: maurosoft1973/alpine
     stage: New Version
     variables:
+        GITLAB_SSH_KEY: "$GITLAB_CI_SSH_KEY"
         GEOIPUPDATE_ACCOUNT_ID: "$GEOIP_UPDATE_ACCOUNT_ID"
         GEOIPUPDATE_LICENSE_KEY: "$GEOIP_UPDATE_LICENSE_KEY"
         GEOIPUPDATE_EDITION_IDS: "$GEOIP_UPDATE_EDITION_IDS"
+        DOCKERHUB_REPO_NAME: "alpine-maxmind-geolite"
         TOKEN: "909913a22ff276a75756e3578391aa"
     only:
         - master
@@ -42,13 +44,32 @@ new version:
         - wget "https://github.com/maxmind/geoipupdate/releases/download/v${MAXMIND_GEOIPUPDATE_VERSION}/geoipupdate_${MAXMIND_GEOIPUPDATE_VERSION}_linux_amd64.tar.gz" -O ./geoipupdate_${MAXMIND_GEOIPUPDATE_VERSION}_linux_amd64.tar.gz
         - tar zxvf ./geoipupdate_${MAXMIND_GEOIPUPDATE_VERSION}_linux_amd64.tar.gz
         - chmod +x ./geoipupdate_${MAXMIND_GEOIPUPDATE_VERSION}_linux_amd64/geoipupdate
-        - ls -la ./geoipupdate_${MAXMIND_GEOIPUPDATE_VERSION}_linux_amd64/
-        - cat ./geoipupdate_${MAXMIND_GEOIPUPDATE_VERSION}_linux_amd64/GeoIP.conf
-        - ./geoipupdate_${MAXMIND_GEOIPUPDATE_VERSION}_linux_amd64/geoipupdate -V
         - ./geoipupdate_${MAXMIND_GEOIPUPDATE_VERSION}_linux_amd64/geoipupdate -f /etc/GeoIP.conf -d /tmp
-        - ls -la /tmp/
-        - date -r /tmp/GeoLite2-City.mmdb +"%Y%m%d"
-        #- curl -X POST -F token=$TOKEN -F "variables[TRIGGER_JOB]=job3" -F ref=master https://gitlab.com/api/v4/projects/21982737/trigger/pipeline
+        - TIMESTAMP=$(date -r /tmp/GeoLite2-City.mmdb +"%Y%m%d")
+        - apk add --no-cache bash git openssh-client ca-certificates
+        - git config --global user.email "mauro.cardillo@gmail.com"
+        - git config --global user.name "Mauro Cardillo"
+        - /bin/bash
+        - mkdir -p ~/.ssh &&  chmod 700 ~/.ssh
+        - echo -e "$GITLAB_SSH_KEY" > ~/.ssh/gitlab_ci_ed25519
+        - chmod 600 ~/.ssh/gitlab_ci_ed25519
+        - echo -e "Host gitlab.com\nHostName gitlab.com\nIdentityFile ~/.ssh/gitlab_ci_ed25519" > ~/.ssh/config
+        - echo -e "Add host gitlab.com to known_hosts"
+        - ssh-keyscan -H gitlab.com >> ~/.ssh/known_hosts
+        - echo -e "Setting permission for ~/.ssh/known_hosts (chmod 644)"
+        - chmod 644 ~/.ssh/known_hosts
+        - git clone git@gitlab.com:maurosoft1973-docker/$DOCKERHUB_REPO_NAME.git /tmp/$DOCKERHUB_REPO_NAME
+        - cd /tmp/$DOCKERHUB_REPO_NAME
+        - cp -p /tmp/GeoLite2-City.mmdb /tmp/$DOCKERHUB_REPO_NAME/db.mmdb
+        - git status
+        - GIT_STATUS=$(git status --porcelain | wc -l)
+        - COMMAND=$([[ $GIT_STATUS == 1 ]] && git add . || echo "no file modified")
+        - echo $COMMAND
+        - COMMAND=$([[ $GIT_STATUS == 1 ]] && git commit -m "Update DB Version to $TIMESTAMP" || echo "no file commit")
+        - echo $COMMAND
+        - COMMAND=$([[ $GIT_STATUS == 1 ]] && git push -o ci.skip fi || echo "no push")
+        - echo $COMMAND
+        - curl -X POST -F token=$TOKEN -F "variables[TRIGGER_JOB]=job$GIT_STATUS" -F ref=master https://gitlab.com/api/v4/projects/21982737/trigger/pipeline
 
 update readme:
     stage: Documentation
