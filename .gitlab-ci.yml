@@ -63,13 +63,15 @@ new version:
         - cp -p /tmp/GeoLite2-City.mmdb /tmp/$DOCKERHUB_REPO_NAME/db.mmdb
         - git status
         - GIT_STATUS=$(git status --porcelain | wc -l)
-        - COMMAND=$([[ $GIT_STATUS == 1 ]] && git add . || echo "no file modified")
+        - COMMAND=$([[ $GIT_STATUS -gt 1 ]] && git add . || echo "no files modified")
         - echo $COMMAND
-        - COMMAND=$([[ $GIT_STATUS == 1 ]] && git commit -m "Update DB Version to $TIMESTAMP" || echo "no file commit")
+        - COMMAND=$([[ $GIT_STATUS -gt 1 ]] && git commit -m "Update DB Version to $TIMESTAMP" || echo "no files commit")
         - echo $COMMAND
-        - COMMAND=$([[ $GIT_STATUS == 1 ]] && git push -o ci.skip fi || echo "no push")
+        - COMMAND=$([[ $GIT_STATUS -gt 1 ]] && git push -o ci.skip fi || echo "no push to repository")
         - echo $COMMAND
-        - curl -X POST -F token=$TOKEN -F "variables[TRIGGER_JOB]=job$GIT_STATUS" -F ref=master https://gitlab.com/api/v4/projects/21982737/trigger/pipeline
+        - JOB=$([[ $GIT_STATUS -gt 1 ]] && echo 1 || echo 0)
+        - echo $JOB
+        - curl -X POST -F token=$TOKEN -F "variables[TRIGGER_JOB]=job$JOB" -F ref=master https://gitlab.com/api/v4/projects/21982737/trigger/pipeline
 
 update readme:
     stage: Documentation
@@ -98,6 +100,9 @@ update readme:
         - git clone git@gitlab.com:maurosoft1973-docker/$DOCKERHUB_REPO_NAME.git /tmp/$DOCKERHUB_REPO_NAME
         - cd /tmp/$DOCKERHUB_REPO_NAME
         - LAST_UPDATE=$(date +"%d.%m.%Y %H:%M:%S")
+        - echo "Generate README"
+        - sed "s/\%ALPINE_VERSION\%/${ALPINE_VERSION}/g" README.tpl > README_COMPILE.md1
+        - sed "s/\%ALPINE_VERSION_DATE\%/${ALPINE_VERSION_DATE}/g" README_COMPILE.md1 > README.md
         - rm -rf README_COMPILE.*
         - git add .
         - git commit -m "Update README"
