@@ -1,15 +1,21 @@
 FROM maurosoft1973/alpine as builder
+
 RUN \
     apk add --update --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
     go && \
     rm -rf /tmp/* /var/cache/apk/*
-RUN mkdir /build 
+
+RUN mkdir /build
 ADD . /build/
+
 WORKDIR /build 
+
 RUN go build -o main .
 
 FROM maurosoft1973/alpine
+
 ARG BUILD_DATE
+
 LABEL \
     maintainer="Mauro Cardillo <mauro.cardillo@gmail.com>" \
     architecture="amd64/x86_64" \
@@ -19,9 +25,8 @@ LABEL \
     org.opencontainers.image.description="MAXMind GeoLite Docker image running on Alpine Linux" \
     org.opencontainers.image.authors="Mauro Cardillo <mauro.cardillo@gmail.com>" \
     org.opencontainers.image.vendor="Mauro Cardillo" \
-    org.opencontainers.image.version="v1.0.0" \
     org.opencontainers.image.url="https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/" \
-    org.opencontainers.image.source="https://github.com/maurosoft1973/alpine-maxmind-geolite" \
+    org.opencontainers.image.source="https://gitlab.com/maurosoft1973-docker/alpine-maxmind-geolite" \
     org.opencontainers.image.created=$BUILD_DATE
 
 COPY --from=builder /build/main /var/www/
