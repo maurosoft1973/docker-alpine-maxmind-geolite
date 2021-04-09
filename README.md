@@ -4,12 +4,12 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/maurosoft1973/alpine-maxmind-geolite.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/)
 [![Docker Stars](https://img.shields.io/docker/stars/maurosoft1973/alpine-maxmind-geolite.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/)
 
-[![Alpine Version](https://img.shields.io/badge/Alpine%20version-v3.13.3-green.svg?style=for-the-badge)](https://alpinelinux.org/)
+[![Alpine Version](https://img.shields.io/badge/Alpine%20version-v3.13.4-green.svg?style=for-the-badge)](https://alpinelinux.org/)
 
 The Docker images [(maurosoft1973/alpine-maxmind-geolite)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/) is based on the minimal [Alpine Linux](https://alpinelinux.org/).
 
-##### Alpine Version 3.13.3 (Released Mar 25, 2021)
-##### MaxMind GeoLite 2 Version 20210330
+##### Alpine Version 3.13.4 (Released Mar 31, 2021)
+##### MaxMind GeoLite 2 Version 20210405
 
 ## Description
 This image contains small rest application, write in go, for ip address geo location in json format.
@@ -38,4 +38,4 @@ http://{CONTAINER_IP_ADDRESS}:3001/{IP} (Format XXX.XXX.XXX.XXX)
 * `TIMEZONE`: default timezone (Europe/Brussels)
 
 ***
-###### Last Update 02.04.2021 10:57:26
+###### Last Update 09.04.2021 08:59:26
