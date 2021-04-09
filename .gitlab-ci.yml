@@ -66,7 +66,7 @@ new version:
         - echo $GIT_STATUS
         - COMMAND=$([[ $GIT_STATUS -ne 0 ]] && git add . || echo "no files modified")
         - echo $COMMAND
-        - COMMAND=$([[ $GIT_STATUS -ne 0 ]] && git commit -m "Update DB Version to $TIMESTAMP" || echo "no files commit")
+        - COMMAND=$([[ $GIT_STATUS -ne 0 ]] && git commit -m "Update DB Version to $IMAGE_TAG" || echo "no files commit")
         - echo $COMMAND
         - COMMAND=$([[ $GIT_STATUS -ne 0 ]] && git push -o ci.skip || echo "no push to repository")
         - echo $COMMAND
