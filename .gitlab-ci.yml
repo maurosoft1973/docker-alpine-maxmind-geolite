@@ -63,13 +63,14 @@ new version:
         - cd /tmp/$DOCKERHUB_REPO_NAME
         - cp -p /tmp/GeoLite2-City.mmdb /tmp/$DOCKERHUB_REPO_NAME/db.mmdb
         - GIT_STATUS=$(git status --porcelain | wc -l)
-        - COMMAND=$([[ $GIT_STATUS -gt 1 ]] && git add . || echo "no files modified")
+        - echo $GIT_STATUS
+        - COMMAND=$([[ $GIT_STATUS -ne 0 ]] && git add . || echo "no files modified")
         - echo $COMMAND
-        - COMMAND=$([[ $GIT_STATUS -gt 1 ]] && git commit -m "Update DB Version to $TIMESTAMP" || echo "no files commit")
+        - COMMAND=$([[ $GIT_STATUS -ne 0 ]] && git commit -m "Update DB Version to $TIMESTAMP" || echo "no files commit")
         - echo $COMMAND
-        - COMMAND=$([[ $GIT_STATUS -gt 1 ]] && git push -o ci.skip fi || echo "no push to repository")
+        - COMMAND=$([[ $GIT_STATUS -ne 0 ]] && git push -o ci.skip fi || echo "no push to repository")
         - echo $COMMAND
-        - JOB=$([[ $GIT_STATUS -gt 1 ]] && echo 1 || echo 0)
+        - JOB=$([[ $GIT_STATUS -ne 0 ]] && echo 1 || echo 0)
         - echo $JOB
         - curl -X POST -F token=$TOKEN -F "variables[TRIGGER_JOB]=job$JOB" -F "variables[TRIGGER_IMAGE_TAG]=$IMAGE_TAG" -F ref=master https://gitlab.com/api/v4/projects/21982737/trigger/pipeline
 
