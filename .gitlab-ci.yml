@@ -68,7 +68,7 @@ new version:
         - echo $COMMAND
         - COMMAND=$([[ $GIT_STATUS -ne 0 ]] && git commit -m "Update DB Version to $TIMESTAMP" || echo "no files commit")
         - echo $COMMAND
-        - COMMAND=$([[ $GIT_STATUS -ne 0 ]] && git push -o ci.skip fi || echo "no push to repository")
+        - COMMAND=$([[ $GIT_STATUS -ne 0 ]] && git push -o ci.skip || echo "no push to repository")
         - echo $COMMAND
         - JOB=$([[ $GIT_STATUS -ne 0 ]] && echo 1 || echo 0)
         - echo $JOB
