@@ -30,7 +30,7 @@ new version:
         GEOIPUPDATE_LICENSE_KEY: "$GEOIP_UPDATE_LICENSE_KEY"
         GEOIPUPDATE_EDITION_IDS: "$GEOIP_UPDATE_EDITION_IDS"
         DOCKERHUB_REPO_NAME: "alpine-maxmind-geolite"
-        TOKEN: "909913a22ff276a75756e3578391aa"
+        TOKEN: "$PIPELINE_TRIGGER_TOKEN"
     only:
         - master
     except:
