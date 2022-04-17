@@ -19,23 +19,86 @@ http://{CONTAINER_IP_ADDRESS}:3001/{IP} (Format XXX.XXX.XXX.XXX)
 
 ## Architectures
 
-* ```:amd64```, ```:x86_64``` - 64 bit Intel/AMD (x86_64/amd64)
+* ```:aarch64``` - 64 bit ARM
+* ```:armhf```   - 32 bit ARM v6
+* ```:armv7```   - 32 bit ARM v7
+* ```:ppc64le``` - 64 bit PowerPC
+* ```:x86```     - 32 bit Intel/AMD
+* ```:x86_64```  - 64 bit Intel/AMD (x86_64/amd64)
 
 ## Tags
 
-* ```:latest``` latest branch based (Automatic Architecture Selection)
-* ```:amd64```, ```:x86_64```  amd64 based on latest tag but amd64 architecture
+* ```:latest```         latest branch based (Automatic Architecture Selection)
+* ```:aarch64```        latest 64 bit ARM
+* ```:armhf```          latest 32 bit ARM v6
+* ```:armv7```          latest 32 bit ARM v7
+* ```:ppc64le```        latest 64 bit PowerPC
+* ```:x86```            latest 32 bit Intel/AMD
+* ```:x86_64```         latest 64 bit Intel/AMD
+* ```:test```           test branch based (Automatic Architecture Selection)
+* ```:test-aarch64```   test 64 bit ARM
+* ```:test-armhf```     test 32 bit ARM v6
+* ```:test-armv7```     test 32 bit ARM v7
+* ```:test-ppc64le```   test 64 bit PowerPC
+* ```:test-x86```       test 32 bit Intel/AMD
+* ```:test-x86_64```    test 64 bit Intel/AMD
+* ```:%ALPINE_VERSION%``` %ALPINE_VERSION% branch based (Automatic Architecture Selection)
+* ```:%ALPINE_VERSION%-aarch64```   %ALPINE_VERSION% 64 bit ARM
+* ```:%ALPINE_VERSION%-armhf```     %ALPINE_VERSION% 32 bit ARM v6
+* ```:%ALPINE_VERSION%-armv7```     %ALPINE_VERSION% 32 bit ARM v7
+* ```:%ALPINE_VERSION%-ppc64le```   %ALPINE_VERSION% 64 bit PowerPC
+* ```:%ALPINE_VERSION%-x86```       %ALPINE_VERSION% 32 bit Intel/AMD
+* ```:%ALPINE_VERSION%-x86_64```    %ALPINE_VERSION% 64 bit Intel/AMD
+* ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%``` %ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION% branch based (Automatic Architecture Selection)
+* ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%-aarch64```   %ALPINE_VERSION% 64 bit ARM
+* ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%-armhf```     %ALPINE_VERSION% 32 bit ARM v6
+* ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%-armv7```     %ALPINE_VERSION% 32 bit ARM v7
+* ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%-ppc64le```   %ALPINE_VERSION% 64 bit PowerPC
+* ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%-x86```       %ALPINE_VERSION% 32 bit Intel/AMD
+* ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%-x86_64```    %ALPINE_VERSION% 64 bit Intel/AMD
 
 ## Layers & Sizes
 
-![Version](https://img.shields.io/badge/version-amd64-blue.svg?style=for-the-badge)
-![MicroBadger Size (tag)](https://img.shields.io/docker/image-size/maurosoft1973/alpine-maxmind-geolite?style=for-the-badge)
+| Version                                                                               | Size                                                                                                                 |
+|---------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| ![Version](https://img.shields.io/badge/version-amd64-blue.svg?style=for-the-badge)   | ![MicroBadger Size (tag)](https://img.shields.io/docker/image-size/maurosoft1973/alpine-maxmind-geolite/latest?style=for-the-badge)  |
+| ![Version](https://img.shields.io/badge/version-armv6-blue.svg?style=for-the-badge)   | ![MicroBadger Size (tag)](https://img.shields.io/docker/image-size/maurosoft1973/alpine-maxmind-geolite/armhf?style=for-the-badge)   |
+| ![Version](https://img.shields.io/badge/version-armv7-blue.svg?style=for-the-badge)   | ![MicroBadger Size (tag)](https://img.shields.io/docker/image-size/maurosoft1973/alpine-maxmind-geolite/armv7?style=for-the-badge)   |
+| ![Version](https://img.shields.io/badge/version-ppc64le-blue.svg?style=for-the-badge) | ![MicroBadger Size (tag)](https://img.shields.io/docker/image-size/maurosoft1973/alpine-maxmind-geolite/ppc64le?style=for-the-badge) |
+| ![Version](https://img.shields.io/badge/version-x86-blue.svg?style=for-the-badge)     | ![MicroBadger Size (tag)](https://img.shields.io/docker/image-size/maurosoft1973/alpine-maxmind-geolite/x86?style=for-the-badge)     |
 
 ## Environment Variables:
 
-### Main Build Tools parameters:
-* `LC_ALL`: default locale (en_GB.UTF-8)
-* `TIMEZONE`: default timezone (Europe/Brussels)
+### Main MaxMind GeoLite 2 parameters:
+* `LC_ALL`: set locale (default en_GB.UTF-8)
+* `TIMEZONE`: set timezone (default Europe/Brussels)
+* `LISTEN_PORT`: set listen port (default 3001)
+
+#### List of locale Sets
+
+When setting locale `LC_ALL`, also make sure to choose a locale otherwise it will be the default (en_GB.UTF-8).
+
+```
++-----------------+
+| Locale          |
++-----------------+
+| fr_CH.UTF-8     |
+| fr_FR.UTF-8     |
+| de_CH.UTF-8     |
+| de_DE.UTF-8     |
+| en_GB.UTF-8     |
+| en_US.UTF-8     |
+| es_ES.UTF-8     |
+| it_CH.UTF-8     |
+| it_IT.UTF-8     |
+| nb_NO.UTF-8     |
+| nl_NL.UTF-8     |
+| pt_PT.UTF-8     |
+| pt_BR.UTF-8     |
+| ru_RU.UTF-8     |
+| sv_SE.UTF-8     |
++-----------------+
+```
 
 ***
 ###### Last Update %LAST_UPDATE%

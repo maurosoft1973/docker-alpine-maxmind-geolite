@@ -1,31 +1,21 @@
 #!/bin/bash
-# Description: Script for alpine maxmind geolite container
+# Description: Script for alpine container
 # Maintainer: Mauro Cardillo
-#
-echo "Get Remote Environment Variable"
-wget -q "https://gitlab.com/maurosoft1973-docker/alpine-variable/-/raw/master/.env" -O ./.env
 source ./.env
 
-echo "Get Remote Settings"
-wget -q "https://gitlab.com/maurosoft1973-docker/alpine-variable/-/raw/master/settings.sh" -O ./settings.sh
-chmod +x ./settings.sh
-source ./settings.sh
-
 # Default values of arguments
-IMAGE=maurosoft1973/alpine-maxmind-geolite
-IMAGE_TAG=latest
-CONTAINER=alpine-maxmind-geolite
+DOCKER_IMAGE=maurosoft1973/alpine-lftp
+DOCKER_IMAGE_TAG=latest
+CONTAINER=alpine-lftp-${DOCKER_IMAGE_TAG}
 LC_ALL=it_IT.UTF-8
 TIMEZONE=Europe/Rome
-LISTEN_IP=0.0.0.0
-LISTEN_PORT=3001
 
 # Loop through arguments and process them
 for arg in "$@"
 do
     case $arg in
         -it=*|--image-tag=*)
-        IMAGE_TAG="${arg#*=}"
+        DOCKER_IMAGE_TAG="${arg#*=}"
         shift # Remove
         ;;
         -cn=*|--container=*)
@@ -40,29 +30,19 @@ do
         TIMEZONE="${arg#*=}"
         shift # Remove
         ;;
-        -li=*|--listen_ip=*)
-        LISTEN_IP="${arg#*=}"
-        shift # Remove
-        ;;
-        -lp=*|--listen_port=*)
-        LISTEN_PORT="${arg#*=}"
-        shift # Remove
-        ;;
         -h|--help)
         echo -e "usage "
         echo -e "$0 "
-        echo -e "  -it=|--image-tag -> ${IMAGE}:${IMAGE_TAG} (image with tag)"
+        echo -e "  -it=|--image-tag -> ${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG} (image with tag)"
         echo -e "  -cn=|--container -> ${CONTAINER} (container name)"
         echo -e "  -cl=|--lc_all -> ${LC_ALL} (container locale)"
         echo -e "  -ct=|--timezone -> ${TIMEZONE} (container timezone)"
-        echo -e "  -li=|--listen_ip -> ${LISTEN_IP} (listen ip)"
-        echo -e "  -lp=|--listen_port -> ${LISTEN_PORT} (listen port)"
         exit 0
         ;;
     esac
 done
 
-echo "# Image                   : ${IMAGE}:${IMAGE_TAG}"
+echo "# Docker Image            : ${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG}"
 echo "# Container Name          : ${CONTAINER}"
 echo "# Container Locale        : ${LC_ALL}"
 echo "# Container Timezone      : ${TIMEZONE}"
@@ -80,21 +60,37 @@ else
 fi
 
 echo -e "Create and run container"
-docker run -dit --name ${CONTAINER} -p ${LISTEN_IP}:${LISTEN_PORT}:3001 -e LC_ALL=${LC_ALL} -e TIMEZONE=${TIMEZONE} ${IMAGE}:${IMAGE_TAG}
+docker run -dit --name ${CONTAINER} -e LC_ALL=${LC_ALL} -e TIMEZONE=${TIMEZONE} ${DOCKER_IMAGE}:${DOCKER_IMAGE_TAG}
 
+echo -e ""
 echo -e "Sleep 5 second"
 sleep 5
 
 IP=$(docker exec -it ${CONTAINER} /sbin/ip route | grep "src" | awk '{print $7}')
-echo -e "IP Address is: ${IP}";
+echo -e "IP Address is: $IP"
 
 echo -e ""
-echo -e "Environment variable";
+echo -e "Environment variable"
 docker exec -it ${CONTAINER} env
 
 echo -e ""
-echo -e "Container Logs"
-docker logs ${CONTAINER}
+echo -e "Test Locale (date)"
+docker exec -it ${CONTAINER} date
 
-rm -rf ./.env
-rm -rf ./settings.sh
+echo -e ""
+echo -e "Check Release Version"
+CONTAINER_ALPINE_VERSION_RAW=$(docker exec -it ${CONTAINER} cat /etc/alpine-release)
+CONTAINER_ALPINE_VERSION=`echo $CONTAINER_ALPINE_VERSION_RAW | sed 's/\\r//g'`
+
+echo -e "Container Version -> ${CONTAINER_ALPINE_VERSION}"
+echo -e "Expected Version  -> ${ALPINE_VERSION}"
+
+if [ "${CONTAINER_ALPINE_VERSION}" == "${ALPINE_VERSION}" ]; then
+    echo -e "OK"
+else 
+    echo -e "KO"
+fi
+
+echo -e ""
+echo -e "Attach Containers"
+docker attach ${CONTAINER}
