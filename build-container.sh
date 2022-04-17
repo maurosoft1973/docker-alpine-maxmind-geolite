@@ -4,7 +4,7 @@
 source ./.env
 
 # Default values of arguments
-DOCKER_IMAGE=maurosoft1973/alpine-lftp
+DOCKER_IMAGE=maurosoft1973/alpine-maxmind
 DOCKER_IMAGE_TAG=latest
 CONTAINER=alpine-lftp-${DOCKER_IMAGE_TAG}
 LC_ALL=it_IT.UTF-8

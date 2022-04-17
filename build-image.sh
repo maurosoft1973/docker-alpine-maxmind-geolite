@@ -29,11 +29,11 @@ do
         ALPINE_VERSION_DATE="${arg#*=}"
         shift # Remove
         ;;
-        -mv=*|--lftp-version=*)
+        -mv=*|--maxmind-version=*)
         MAXMIND_GEOLITE_VERSION="${arg#*=}"
         shift # Remove
         ;;
-        -md=*|--lftp-version-date=*)
+        -md=*|--maxmind-version-date=*)
         MAXMIND_GEOLITE_VERSION_DATE="${arg#*=}"
         shift # Remove
         ;;

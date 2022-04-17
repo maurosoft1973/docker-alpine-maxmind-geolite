@@ -95,7 +95,6 @@ if [ "$TOKEN" != "null" ]; then
             --amend ${DOCKER_IMAGE}:test-armhf \
             --amend ${DOCKER_IMAGE}:test-armv7 \
             --amend ${DOCKER_IMAGE}:test-ppc64le \
-            --amend ${DOCKER_IMAGE}:test-x86 \
             --amend ${DOCKER_IMAGE}:test-x86_64
 
         docker manifest push ${DOCKER_IMAGE}:test
@@ -106,7 +105,6 @@ if [ "$TOKEN" != "null" ]; then
             --amend ${DOCKER_IMAGE}:${ALPINE_VERSION}-armhf \
             --amend ${DOCKER_IMAGE}:${ALPINE_VERSION}-armv7 \
             --amend ${DOCKER_IMAGE}:${ALPINE_VERSION}-ppc64le \
-            --amend ${DOCKER_IMAGE}:${ALPINE_VERSION}-x86 \
             --amend ${DOCKER_IMAGE}:${ALPINE_VERSION}-x86_64
 
         docker manifest push ${DOCKER_IMAGE}:${ALPINE_VERSION}
@@ -116,7 +114,6 @@ if [ "$TOKEN" != "null" ]; then
             --amend ${DOCKER_IMAGE}:${ALPINE_VERSION}-${MAXMIND_GEOLITE_VERSION}-armhf \
             --amend ${DOCKER_IMAGE}:${ALPINE_VERSION}-${MAXMIND_GEOLITE_VERSION}-armv7 \
             --amend ${DOCKER_IMAGE}:${ALPINE_VERSION}-${MAXMIND_GEOLITE_VERSION}-ppc64le \
-            --amend ${DOCKER_IMAGE}:${ALPINE_VERSION}-${MAXMIND_GEOLITE_VERSION}-x86 \
             --amend ${DOCKER_IMAGE}:${ALPINE_VERSION}-${MAXMIND_GEOLITE_VERSION}-x86_64
 
         docker manifest push ${DOCKER_IMAGE}:${ALPINE_VERSION}-${MAXMIND_GEOLITE_VERSION}
@@ -127,7 +124,6 @@ if [ "$TOKEN" != "null" ]; then
             --amend ${DOCKER_IMAGE}:armhf \
             --amend ${DOCKER_IMAGE}:armv7 \
             --amend ${DOCKER_IMAGE}:ppc64le \
-            --amend ${DOCKER_IMAGE}:x86 \
             --amend ${DOCKER_IMAGE}:x86_64
 
         docker manifest push ${DOCKER_IMAGE}
@@ -137,7 +133,6 @@ if [ "$TOKEN" != "null" ]; then
             --amend ${DOCKER_IMAGE}:${MAXMIND_GEOLITE_VERSION}-armhf \
             --amend ${DOCKER_IMAGE}:${MAXMIND_GEOLITE_VERSION}-armv7 \
             --amend ${DOCKER_IMAGE}:${MAXMIND_GEOLITE_VERSION}-ppc64le \
-            --amend ${DOCKER_IMAGE}:${MAXMIND_GEOLITE_VERSION}-x86 \
             --amend ${DOCKER_IMAGE}:${MAXMIND_GEOLITE_VERSION}-x86_64
 
         docker manifest push ${DOCKER_IMAGE}:${MAXMIND_GEOLITE_VERSION}
