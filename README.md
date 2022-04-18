@@ -4,11 +4,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/maurosoft1973/alpine-maxmind-geolite.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/)
 [![Docker Stars](https://img.shields.io/docker/stars/maurosoft1973/alpine-maxmind-geolite.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/)
 
-[![Alpine Version](https://img.shields.io/badge/Alpine%20version-v3.15.4-green.svg?style=for-the-badge)](https://alpinelinux.org/)
+[![Alpine Version](https://img.shields.io/badge/Alpine%20version-v3.15.0-green.svg?style=for-the-badge)](https://alpinelinux.org/)
 
 The Docker images [(maurosoft1973/alpine-maxmind-geolite)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/) is based on the minimal [Alpine Linux](https://alpinelinux.org/).
 
-##### Alpine Version 3.15.4 (Released Apr 04 2022)
+##### Alpine Version 3.15.0 (Released Nov 24 2021)
 ##### MaxMind GeoLite 2 Version 20220412
 
 ## Description
@@ -17,17 +17,25 @@ This image contains small rest application, write in go, for return the Geo Info
 The endpoint available:
 #### **/:ip**
    #### Return Geo IP Info
+
    **URL** : `/:ip/`
+
    **URL Parameters** : `ip=[varchar]` where `ip` is the ip address (v4) 
+
    **Method** : `GET`
+
    **Auth required** : NO
+
    #### Success Response
+
    **Condition** : If ip exist on database.
+
    **Code** : `200 OK`
+
    **Response example**
-   ```json
-    {
-      "City": {
+   ```yaml
+  {
+    "City": {
         "GeoNameID": 3176959,
         "Names": {
           "de": "Florenz",
@@ -132,18 +140,26 @@ The endpoint available:
         "IsAnonymousProxy": false,
         "IsSatelliteProvider": false
       }
-    }
-    ```
-
-#### **/myip**
+  }
+  ```
+    
+   #### **/myip**
    #### Return the remote ip address
+
    **URL** : `/myip/`
+
    **URL Parameters** : NO
+   
    **Method** : `GET`
+   
    **Auth required** : NO
+   
    #### Success Response
+   
    **Code** : `200 OK`
+   
    **Response example**
+   
    ```text
    88.49.36.133
    ```
@@ -170,18 +186,18 @@ The endpoint available:
 * ```:test-armv7```     test 32 bit ARM v7
 * ```:test-ppc64le```   test 64 bit PowerPC
 * ```:test-x86_64```    test 64 bit Intel/AMD
-* ```:3.15.4``` 3.15.4 branch based (Automatic Architecture Selection)
-* ```:3.15.4-aarch64```   3.15.4 64 bit ARM
-* ```:3.15.4-armhf```     3.15.4 32 bit ARM v6
-* ```:3.15.4-armv7```     3.15.4 32 bit ARM v7
-* ```:3.15.4-ppc64le```   3.15.4 64 bit PowerPC
-* ```:3.15.4-x86_64```    3.15.4 64 bit Intel/AMD
-* ```:3.15.4-20220412``` 3.15.4-20220412 branch based (Automatic Architecture Selection)
-* ```:3.15.4-20220412-aarch64```   3.15.4 64 bit ARM
-* ```:3.15.4-20220412-armhf```     3.15.4 32 bit ARM v6
-* ```:3.15.4-20220412-armv7```     3.15.4 32 bit ARM v7
-* ```:3.15.4-20220412-ppc64le```   3.15.4 64 bit PowerPC
-* ```:3.15.4-20220412-x86_64```    3.15.4 64 bit Intel/AMD
+* ```:3.15.0``` 3.15.0 branch based (Automatic Architecture Selection)
+* ```:3.15.0-aarch64```   3.15.0 64 bit ARM
+* ```:3.15.0-armhf```     3.15.0 32 bit ARM v6
+* ```:3.15.0-armv7```     3.15.0 32 bit ARM v7
+* ```:3.15.0-ppc64le```   3.15.0 64 bit PowerPC
+* ```:3.15.0-x86_64```    3.15.0 64 bit Intel/AMD
+* ```:3.15.0-20220412``` 3.15.0-20220412 branch based (Automatic Architecture Selection)
+* ```:3.15.0-20220412-aarch64```   3.15.0 64 bit ARM
+* ```:3.15.0-20220412-armhf```     3.15.0 32 bit ARM v6
+* ```:3.15.0-20220412-armv7```     3.15.0 32 bit ARM v7
+* ```:3.15.0-20220412-ppc64le```   3.15.0 64 bit PowerPC
+* ```:3.15.0-20220412-x86_64```    3.15.0 64 bit Intel/AMD
 
 ## Layers & Sizes
 
@@ -234,4 +250,4 @@ curl http://localhost:3002/myip
 ```
 
 ***
-###### Last Update 18.04.2022 16:19:03
+###### Last Update 18.04.2022 17:00:05
