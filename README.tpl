@@ -1,4 +1,4 @@
-# Application for Geo Location IP Docker image running on Alpine Linux
+# Rest Application for Geo Location IP - Docker image running on Alpine Linux
 
 [![Docker Automated build](https://img.shields.io/docker/automated/maurosoft1973/alpine-maxmind-geolite.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/maurosoft1973/alpine-maxmind-geolite.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/)
@@ -23,7 +23,6 @@ http://{CONTAINER_IP_ADDRESS}:3001/{IP} (Format XXX.XXX.XXX.XXX)
 * ```:armhf```   - 32 bit ARM v6
 * ```:armv7```   - 32 bit ARM v7
 * ```:ppc64le``` - 64 bit PowerPC
-* ```:x86```     - 32 bit Intel/AMD
 * ```:x86_64```  - 64 bit Intel/AMD (x86_64/amd64)
 
 ## Tags
@@ -33,28 +32,24 @@ http://{CONTAINER_IP_ADDRESS}:3001/{IP} (Format XXX.XXX.XXX.XXX)
 * ```:armhf```          latest 32 bit ARM v6
 * ```:armv7```          latest 32 bit ARM v7
 * ```:ppc64le```        latest 64 bit PowerPC
-* ```:x86```            latest 32 bit Intel/AMD
 * ```:x86_64```         latest 64 bit Intel/AMD
 * ```:test```           test branch based (Automatic Architecture Selection)
 * ```:test-aarch64```   test 64 bit ARM
 * ```:test-armhf```     test 32 bit ARM v6
 * ```:test-armv7```     test 32 bit ARM v7
 * ```:test-ppc64le```   test 64 bit PowerPC
-* ```:test-x86```       test 32 bit Intel/AMD
 * ```:test-x86_64```    test 64 bit Intel/AMD
 * ```:%ALPINE_VERSION%``` %ALPINE_VERSION% branch based (Automatic Architecture Selection)
 * ```:%ALPINE_VERSION%-aarch64```   %ALPINE_VERSION% 64 bit ARM
 * ```:%ALPINE_VERSION%-armhf```     %ALPINE_VERSION% 32 bit ARM v6
 * ```:%ALPINE_VERSION%-armv7```     %ALPINE_VERSION% 32 bit ARM v7
 * ```:%ALPINE_VERSION%-ppc64le```   %ALPINE_VERSION% 64 bit PowerPC
-* ```:%ALPINE_VERSION%-x86```       %ALPINE_VERSION% 32 bit Intel/AMD
 * ```:%ALPINE_VERSION%-x86_64```    %ALPINE_VERSION% 64 bit Intel/AMD
 * ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%``` %ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION% branch based (Automatic Architecture Selection)
 * ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%-aarch64```   %ALPINE_VERSION% 64 bit ARM
 * ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%-armhf```     %ALPINE_VERSION% 32 bit ARM v6
 * ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%-armv7```     %ALPINE_VERSION% 32 bit ARM v7
 * ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%-ppc64le```   %ALPINE_VERSION% 64 bit PowerPC
-* ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%-x86```       %ALPINE_VERSION% 32 bit Intel/AMD
 * ```:%ALPINE_VERSION%-%MAXMIND_GEOLITE_VERSION%-x86_64```    %ALPINE_VERSION% 64 bit Intel/AMD
 
 ## Layers & Sizes
@@ -65,7 +60,6 @@ http://{CONTAINER_IP_ADDRESS}:3001/{IP} (Format XXX.XXX.XXX.XXX)
 | ![Version](https://img.shields.io/badge/version-armv6-blue.svg?style=for-the-badge)   | ![MicroBadger Size (tag)](https://img.shields.io/docker/image-size/maurosoft1973/alpine-maxmind-geolite/armhf?style=for-the-badge)   |
 | ![Version](https://img.shields.io/badge/version-armv7-blue.svg?style=for-the-badge)   | ![MicroBadger Size (tag)](https://img.shields.io/docker/image-size/maurosoft1973/alpine-maxmind-geolite/armv7?style=for-the-badge)   |
 | ![Version](https://img.shields.io/badge/version-ppc64le-blue.svg?style=for-the-badge) | ![MicroBadger Size (tag)](https://img.shields.io/docker/image-size/maurosoft1973/alpine-maxmind-geolite/ppc64le?style=for-the-badge) |
-| ![Version](https://img.shields.io/badge/version-x86-blue.svg?style=for-the-badge)     | ![MicroBadger Size (tag)](https://img.shields.io/docker/image-size/maurosoft1973/alpine-maxmind-geolite/x86?style=for-the-badge)     |
 
 ## Environment Variables:
 

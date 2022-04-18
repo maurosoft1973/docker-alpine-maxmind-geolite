@@ -39,6 +39,8 @@ build-test:
     stage: build
     only:
         - master
+    tags:
+        - amd64
     variables:
         RELEASE: "TEST"
     script:
@@ -52,6 +54,8 @@ build-current:
     stage: build
     only:
         - master
+    tags:
+        - amd64
     variables:
         RELEASE: "CURRENT"
     script:
@@ -65,6 +69,8 @@ build-latest:
     stage: build
     only:
         - master
+    tags:
+        - amd64
     variables:
         RELEASE: "LATEST"
     script:
@@ -78,6 +84,8 @@ push-test:
     stage: push
     only:
         - master
+    tags:
+        - amd64
     variables:
         RELEASE: "TEST"
     needs:
@@ -96,6 +104,8 @@ push-current:
         - master
     variables:
         RELEASE: "CURRENT"
+    tags:
+        - amd64
     needs:
         - build-current
     script:
@@ -112,6 +122,8 @@ push-latest:
         - master
     variables:
         RELEASE: "LATEST"
+    tags:
+        - amd64
     needs:
         - build-latest
     script:
@@ -133,6 +145,8 @@ readme:
         DOCKERHUB_SHORT_DESCRIPTION: "MaxMind GeoLite Docker Image with Multilanguage e Timezone support running on Alpine Linux"
     only:
         - master
+    tags:
+        - amd64
     needs:
         - push-latest
     script:
