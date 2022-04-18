@@ -144,8 +144,8 @@ elif [ "$RELEASE" == "CURRENT" ]; then
     echo "Remove image ${DOCKER_IMAGE}:${ALPINE_VERSION}-${ALPINE_ARCHITECTURE}"
     docker rmi -f ${DOCKER_IMAGE}:${ALPINE_VERSION}-${ALPINE_ARCHITECTURE}> /dev/null 2>&1
 
-    echo "Remove image ${DOCKER_IMAGE}:${ALPINE_VERSION}-${LFTP_VERSION}-${ALPINE_ARCHITECTURE}"
-    docker rmi -f ${DOCKER_IMAGE}:${ALPINE_VERSION}-${LFTP_VERSION}-${ALPINE_ARCHITECTURE}> /dev/null 2>&1
+    echo "Remove image ${DOCKER_IMAGE}:${ALPINE_VERSION}-${MAXMIND_GEOLITE_VERSION}-${ALPINE_ARCHITECTURE}"
+    docker rmi -f ${DOCKER_IMAGE}:${ALPINE_VERSION}-${MAXMIND_GEOLITE_VERSION}-${ALPINE_ARCHITECTURE}> /dev/null 2>&1
 
     echo "Build Image: ${DOCKER_IMAGE} -> $RELEASE"
     docker buildx build --platform ${PLATFORM} \
@@ -158,14 +158,14 @@ elif [ "$RELEASE" == "CURRENT" ]; then
             --build-arg MAXMIND_GEOLITE_VERSION=${MAXMIND_GEOLITE_VERSION} \
             --build-arg MAXMIND_GEOLITE_VERSION_DATE="${MAXMIND_GEOLITE_VERSION_DATE}" \
             -t ${DOCKER_IMAGE}:${ALPINE_VERSION}-${ALPINE_ARCHITECTURE} \
-            -t ${DOCKER_IMAGE}:${ALPINE_VERSION}-${LFTP_VERSION}-${ALPINE_ARCHITECTURE} \
+            -t ${DOCKER_IMAGE}:${ALPINE_VERSION}-${MAXMIND_GEOLITE_VERSION}-${ALPINE_ARCHITECTURE} \
             -f ./Dockerfile .
 else
     echo "Remove image ${DOCKER_IMAGE}:${ALPINE_ARCHITECTURE}"
     docker rmi -f ${DOCKER_IMAGE}:${ALPINE_ARCHITECTURE} > /dev/null 2>&1
 
-    echo "Remove image ${DOCKER_IMAGE}:${LFTP_VERSION}-${ALPINE_ARCHITECTURE}"
-    docker rmi -f ${DOCKER_IMAGE}:${LFTP_VERSION}-${ALPINE_ARCHITECTURE}> /dev/null 2>&1
+    echo "Remove image ${DOCKER_IMAGE}:${MAXMIND_GEOLITE_VERSION}-${ALPINE_ARCHITECTURE}"
+    docker rmi -f ${DOCKER_IMAGE}:${MAXMIND_GEOLITE_VERSION}-${ALPINE_ARCHITECTURE}> /dev/null 2>&1
 
     echo "Build Image: ${DOCKER_IMAGE} -> $RELEASE"
     docker buildx build --platform ${PLATFORM} \
@@ -178,6 +178,6 @@ else
             --build-arg MAXMIND_GEOLITE_VERSION=${MAXMIND_GEOLITE_VERSION} \
             --build-arg MAXMIND_GEOLITE_VERSION_DATE="${MAXMIND_GEOLITE_VERSION_DATE}" \
             -t ${DOCKER_IMAGE}:${ALPINE_ARCHITECTURE} \
-            -t ${DOCKER_IMAGE}:${LFTP_VERSION}-${ALPINE_ARCHITECTURE} \
+            -t ${DOCKER_IMAGE}:${MAXMIND_GEOLITE_VERSION}-${ALPINE_ARCHITECTURE} \
             -f ./Dockerfile .
 fi
