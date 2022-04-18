@@ -1,4 +1,4 @@
-# Rest Application for Geo Location IP - Docker image running on Alpine Linux
+﻿# Rest Application for Geo Location IP - Docker image running on Alpine Linux
 
 [![Docker Automated build](https://img.shields.io/docker/automated/maurosoft1973/alpine-maxmind-geolite.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/maurosoft1973/alpine-maxmind-geolite.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/)
@@ -12,10 +12,141 @@ The Docker images [(maurosoft1973/alpine-maxmind-geolite)](https://hub.docker.co
 ##### MaxMind GeoLite 2 Version %MAXMIND_GEOLITE_VERSION%
 
 ## Description
-This image contains small rest application, write in go, for ip address geo location in json format.
+This image contains small rest application, write in go, for return the Geo Info for ip address.
 
-For call the service:
-http://{CONTAINER_IP_ADDRESS}:3001/{IP} (Format XXX.XXX.XXX.XXX)
+The endpoint available:
+#### **/:ip**
+   #### Return Geo IP Info
+   **URL** : `/:ip/`
+   **URL Parameters** : `ip=[varchar]` where `ip` is the ip address (v4) 
+   **Method** : `GET`
+   **Auth required** : NO
+   #### Success Response
+   **Condition** : If ip exist on database.
+   **Code** : `200 OK`
+   **Response example**
+   ```json
+    {
+      "City": {
+        "GeoNameID": 3176959,
+        "Names": {
+          "de": "Florenz",
+          "en": "Florence",
+          "es": "Florencia",
+          "fr": "Florence",
+          "ja": "フィレンツェ",
+          "pt-BR": "Florença",
+          "ru": "Флоренция",
+          "zh-CN": "佛罗伦萨"
+        }
+      },
+      "Continent": {
+        "Code": "EU",
+        "GeoNameID": 6255148,
+        "Names": {
+          "de": "Europa",
+          "en": "Europe",
+          "es": "Europa",
+          "fr": "Europe",
+          "ja": "ヨーロッパ",
+          "pt-BR": "Europa",
+          "ru": "Европа",
+          "zh-CN": "欧洲"
+        }
+      },
+      "Country": {
+        "GeoNameID": 3175395,
+        "IsInEuropeanUnion": true,
+        "IsoCode": "IT",
+        "Names": {
+          "de": "Italien",
+          "en": "Italy",
+          "es": "Italia",
+          "fr": "Italie",
+          "ja": "イタリア共和国",
+          "pt-BR": "Itália",
+          "ru": "Италия",
+          "zh-CN": "意大利"
+        }
+      },
+      "Location": {
+        "AccuracyRadius": 50,
+        "Latitude": 43.7686,
+        "Longitude": 11.2509,
+        "MetroCode": 0,
+        "TimeZone": "Europe/Rome"
+      },
+      "Postal": {
+        "Code": "50125"
+      },
+      "RegisteredCountry": {
+        "GeoNameID": 3175395,
+        "IsInEuropeanUnion": true,
+        "IsoCode": "IT",
+        "Names": {
+          "de": "Italien",
+          "en": "Italy",
+          "es": "Italia",
+          "fr": "Italie",
+          "ja": "イタリア共和国",
+          "pt-BR": "Itália",
+          "ru": "Италия",
+          "zh-CN": "意大利"
+        }
+      },
+      "RepresentedCountry": {
+        "GeoNameID": 0,
+        "IsInEuropeanUnion": false,
+        "IsoCode": "",
+        "Names": null,
+        "Type": ""
+      },
+      "Subdivisions": [
+        {
+          "GeoNameID": 3165361,
+          "IsoCode": "52",
+          "Names": {
+            "de": "Toskana",
+            "en": "Tuscany",
+            "es": "Toscana",
+            "fr": "Toscane",
+            "ja": "トスカーナ州",
+            "pt-BR": "Toscana",
+            "ru": "Тоскана",
+            "zh-CN": "托斯卡纳"
+          }
+        },
+        {
+          "GeoNameID": 3176958,
+          "IsoCode": "FI",
+          "Names": {
+            "de": "Florenz",
+            "en": "Province of Florence",
+            "es": "Florencia",
+            "fr": "Florence",
+            "pt-BR": "Florença"
+          }
+        }
+      ],
+      "Traits": {
+        "IsAnonymousProxy": false,
+        "IsSatelliteProvider": false
+      }
+    }
+    ```
+
+#### **/myip**
+   #### Return the remote ip address
+   **URL** : `/myip/`
+   **URL Parameters** : NO
+   **Method** : `GET`
+   **Auth required** : NO
+   #### Success Response
+   **Code** : `200 OK`
+   **Response example**
+   ```text
+   88.49.36.133
+   ```
 
 ## Architectures
 
@@ -92,6 +223,14 @@ When setting locale `LC_ALL`, also make sure to choose a locale otherwise it wil
 | ru_RU.UTF-8     |
 | sv_SE.UTF-8     |
 +-----------------+
+```
+
+## Create Container with default parameters (listen port 3001)
+```bash
+docker run -d --name alpine-maxmind-geo -p 3002:3002 -e LISTEN_PORT=3002 maurosoft1973/alpine-maxmind-geolite
+
+curl http://localhost:3002/8.8.8.8
+curl http://localhost:3002/myip
 ```
 
 ***
