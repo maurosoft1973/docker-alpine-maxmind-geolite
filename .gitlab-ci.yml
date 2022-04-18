@@ -94,6 +94,9 @@ push-test:
         - amd64
     variables:
         RELEASE: "TEST"
+    except:
+        changes:
+            - "*.tpl"
     needs:
         - build-test
     script:
@@ -110,6 +113,9 @@ push-current:
         - master
     variables:
         RELEASE: "CURRENT"
+    except:
+        changes:
+            - "*.tpl"
     tags:
         - amd64
     needs:
