@@ -43,6 +43,9 @@ build-test:
         - amd64
     variables:
         RELEASE: "TEST"
+    except:
+        changes:
+            - "*.tpl"
     script:
         - bash ./build-image.sh -di=$JOB_DOCKER_IMAGE -aa=aarch64 -av=$JOB_ALPINE_VERSION -ad="$JOB_ALPINE_VERSION_DATE" -ar=$JOB_ALPINE_RELEASE -mv=$JOB_MAXMIND_GEOLITE_VERSION -md=$JOB_MAXMIND_GEOLITE_VERSION_DATE -r=$RELEASE
         - bash ./build-image.sh -di=$JOB_DOCKER_IMAGE -aa=armhf -av=$JOB_ALPINE_VERSION -ad="$JOB_ALPINE_VERSION_DATE" -ar=$JOB_ALPINE_RELEASE -mv=$JOB_MAXMIND_GEOLITE_VERSION -md=$JOB_MAXMIND_GEOLITE_VERSION_DATE -r=$RELEASE
@@ -58,6 +61,9 @@ build-current:
         - amd64
     variables:
         RELEASE: "CURRENT"
+    except:
+        changes:
+            - "*.tpl"
     script:
         - bash ./build-image.sh -di=$JOB_DOCKER_IMAGE -aa=aarch64 -av=$JOB_ALPINE_VERSION -ad="$JOB_ALPINE_VERSION_DATE" -ar=$JOB_ALPINE_RELEASE -mv=$JOB_MAXMIND_GEOLITE_VERSION -md=$JOB_MAXMIND_GEOLITE_VERSION_DATE -r=$RELEASE
         - bash ./build-image.sh -di=$JOB_DOCKER_IMAGE -aa=armhf -av=$JOB_ALPINE_VERSION -ad="$JOB_ALPINE_VERSION_DATE" -ar=$JOB_ALPINE_RELEASE -mv=$JOB_MAXMIND_GEOLITE_VERSION -md=$JOB_MAXMIND_GEOLITE_VERSION_DATE -r=$RELEASE

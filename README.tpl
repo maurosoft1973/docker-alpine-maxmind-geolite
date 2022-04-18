@@ -17,17 +17,25 @@ This image contains small rest application, write in go, for return the Geo Info
 The endpoint available:
 #### **/:ip**
    #### Return Geo IP Info
+
    **URL** : `/:ip/`
+
    **URL Parameters** : `ip=[varchar]` where `ip` is the ip address (v4) 
+
    **Method** : `GET`
+
    **Auth required** : NO
+
    #### Success Response
+
    **Condition** : If ip exist on database.
+
    **Code** : `200 OK`
+
    **Response example**
-   ```json
-    {
-      "City": {
+   ```yaml
+  {
+    "City": {
         "GeoNameID": 3176959,
         "Names": {
           "de": "Florenz",
@@ -132,18 +140,26 @@ The endpoint available:
         "IsAnonymousProxy": false,
         "IsSatelliteProvider": false
       }
-    }
-    ```
-
-#### **/myip**
+  }
+  ```
+    
+   #### **/myip**
    #### Return the remote ip address
+
    **URL** : `/myip/`
+
    **URL Parameters** : NO
+   
    **Method** : `GET`
+   
    **Auth required** : NO
+   
    #### Success Response
+   
    **Code** : `200 OK`
+   
    **Response example**
+   
    ```text
    88.49.36.133
    ```
