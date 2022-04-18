@@ -241,7 +241,10 @@ When setting locale `LC_ALL`, also make sure to choose a locale otherwise it wil
 +-----------------+
 ```
 
-## Create Container with default parameters (listen port 3001)
+## Example of use
+
+### Create Container with default parameters (listen port 3001)
+
 ```bash
 docker run -d --name alpine-maxmind-geo -p 3001:3001 -e LISTEN_PORT=3001 maurosoft1973/alpine-maxmind-geolite
 
