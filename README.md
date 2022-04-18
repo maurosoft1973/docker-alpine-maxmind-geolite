@@ -4,11 +4,11 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/maurosoft1973/alpine-maxmind-geolite.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/)
 [![Docker Stars](https://img.shields.io/docker/stars/maurosoft1973/alpine-maxmind-geolite.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/)
 
-[![Alpine Version](https://img.shields.io/badge/Alpine%20version-v3.15.3-green.svg?style=for-the-badge)](https://alpinelinux.org/)
+[![Alpine Version](https://img.shields.io/badge/Alpine%20version-v3.15.1-green.svg?style=for-the-badge)](https://alpinelinux.org/)
 
 The Docker images [(maurosoft1973/alpine-maxmind-geolite)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/) is based on the minimal [Alpine Linux](https://alpinelinux.org/).
 
-##### Alpine Version 3.15.3 (Released Mar 28 2022)
+##### Alpine Version 3.15.1 (Released Mar 16 2022)
 ##### MaxMind GeoLite 2 Version 20220412
 
 ## Description
@@ -39,18 +39,18 @@ http://{CONTAINER_IP_ADDRESS}:3001/{IP} (Format XXX.XXX.XXX.XXX)
 * ```:test-armv7```     test 32 bit ARM v7
 * ```:test-ppc64le```   test 64 bit PowerPC
 * ```:test-x86_64```    test 64 bit Intel/AMD
-* ```:3.15.3``` 3.15.3 branch based (Automatic Architecture Selection)
-* ```:3.15.3-aarch64```   3.15.3 64 bit ARM
-* ```:3.15.3-armhf```     3.15.3 32 bit ARM v6
-* ```:3.15.3-armv7```     3.15.3 32 bit ARM v7
-* ```:3.15.3-ppc64le```   3.15.3 64 bit PowerPC
-* ```:3.15.3-x86_64```    3.15.3 64 bit Intel/AMD
-* ```:3.15.3-20220412``` 3.15.3-20220412 branch based (Automatic Architecture Selection)
-* ```:3.15.3-20220412-aarch64```   3.15.3 64 bit ARM
-* ```:3.15.3-20220412-armhf```     3.15.3 32 bit ARM v6
-* ```:3.15.3-20220412-armv7```     3.15.3 32 bit ARM v7
-* ```:3.15.3-20220412-ppc64le```   3.15.3 64 bit PowerPC
-* ```:3.15.3-20220412-x86_64```    3.15.3 64 bit Intel/AMD
+* ```:3.15.1``` 3.15.1 branch based (Automatic Architecture Selection)
+* ```:3.15.1-aarch64```   3.15.1 64 bit ARM
+* ```:3.15.1-armhf```     3.15.1 32 bit ARM v6
+* ```:3.15.1-armv7```     3.15.1 32 bit ARM v7
+* ```:3.15.1-ppc64le```   3.15.1 64 bit PowerPC
+* ```:3.15.1-x86_64```    3.15.1 64 bit Intel/AMD
+* ```:3.15.1-20220412``` 3.15.1-20220412 branch based (Automatic Architecture Selection)
+* ```:3.15.1-20220412-aarch64```   3.15.1 64 bit ARM
+* ```:3.15.1-20220412-armhf```     3.15.1 32 bit ARM v6
+* ```:3.15.1-20220412-armv7```     3.15.1 32 bit ARM v7
+* ```:3.15.1-20220412-ppc64le```   3.15.1 64 bit PowerPC
+* ```:3.15.1-20220412-x86_64```    3.15.1 64 bit Intel/AMD
 
 ## Layers & Sizes
 
@@ -95,4 +95,4 @@ When setting locale `LC_ALL`, also make sure to choose a locale otherwise it wil
 ```
 
 ***
-###### Last Update 18.04.2022 14:11:25
+###### Last Update 18.04.2022 15:11:48
