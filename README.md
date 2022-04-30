@@ -9,7 +9,7 @@
 The Docker images [(maurosoft1973/alpine-maxmind-geolite)](https://hub.docker.com/r/maurosoft1973/alpine-maxmind-geolite/) is based on the minimal [Alpine Linux](https://alpinelinux.org/).
 
 ##### Alpine Version 3.15.4 (Released Apr 04 2022)
-##### MaxMind GeoLite 2 Version 20220412
+##### MaxMind GeoLite 2 Version 20220427
 
 ## Description
 This image contains small rest application, write in go, for return the Geo Info for ip address.
@@ -192,12 +192,12 @@ The endpoint available:
 * ```:3.15.4-armv7```     3.15.4 32 bit ARM v7
 * ```:3.15.4-ppc64le```   3.15.4 64 bit PowerPC
 * ```:3.15.4-x86_64```    3.15.4 64 bit Intel/AMD
-* ```:3.15.4-20220412``` 3.15.4-20220412 branch based (Automatic Architecture Selection)
-* ```:3.15.4-20220412-aarch64```   3.15.4 64 bit ARM
-* ```:3.15.4-20220412-armhf```     3.15.4 32 bit ARM v6
-* ```:3.15.4-20220412-armv7```     3.15.4 32 bit ARM v7
-* ```:3.15.4-20220412-ppc64le```   3.15.4 64 bit PowerPC
-* ```:3.15.4-20220412-x86_64```    3.15.4 64 bit Intel/AMD
+* ```:3.15.4-20220427``` 3.15.4-20220427 branch based (Automatic Architecture Selection)
+* ```:3.15.4-20220427-aarch64```   3.15.4 64 bit ARM
+* ```:3.15.4-20220427-armhf```     3.15.4 32 bit ARM v6
+* ```:3.15.4-20220427-armv7```     3.15.4 32 bit ARM v7
+* ```:3.15.4-20220427-ppc64le```   3.15.4 64 bit PowerPC
+* ```:3.15.4-20220427-x86_64```    3.15.4 64 bit Intel/AMD
 
 ## Layers & Sizes
 
@@ -253,4 +253,4 @@ curl http://localhost:3002/myip
 ```
 
 ***
-###### Last Update 18.04.2022 22:10:37
+###### Last Update 30.04.2022 13:45:41
